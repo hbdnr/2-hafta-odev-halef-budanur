@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32602.291
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EduFlow_Odev2", "EduFlow_Odev2\EduFlow_Odev2.csproj", "{A9007CF8-BBB8-4240-93C2-786A01FD16FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9007CF8-BBB8-4240-93C2-786A01FD16FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9007CF8-BBB8-4240-93C2-786A01FD16FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9007CF8-BBB8-4240-93C2-786A01FD16FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9007CF8-BBB8-4240-93C2-786A01FD16FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9CB92739-8CCB-4F05-8DA6-F1F955D3D124}
+	EndGlobalSection
+EndGlobal
