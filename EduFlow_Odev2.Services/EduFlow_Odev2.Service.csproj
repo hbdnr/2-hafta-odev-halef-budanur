@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EduFlow.Dto\EduFlow_Odev2.Dto.csproj" />
+    <ProjectReference Include="..\EduFlow_Odev2\EduFlow_Odev2.csproj" />
+  </ItemGroup>
+
+</Project>

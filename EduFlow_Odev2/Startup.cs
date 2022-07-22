@@ -1,12 +1,16 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using EduFlow_Odev2.Data;
+using EduFlow_Odev2.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +30,57 @@ namespace EduFlow_Odev2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // db  sql server or posgre
+            var dbtype = Configuration.GetConnectionString("DbType");
+            if (dbtype == "SQL")
+            {
+                var dbConfig = Configuration.GetConnectionString("DefaultConnection");
+                services.AddDbContext<AppDbContext>(options => options
+                   .UseSqlServer(dbConfig)
+                   );
+            }
+            else if (dbtype == "PostgreSQL")
+            {
+                var dbConfig = Configuration.GetConnectionString("PostgreSqlConnection");
+                services.AddDbContext<AppDbContext>(options => options
+                   .UseNpgsql(dbConfig)
+                   );
+            }
+
+            // dapper 
+            services.AddSingleton<DapperDbContext>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<ICountryService, CountryService>();
+
+            services.AddSingleton<DapperDbContext>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IDepartmentService, DepartmentService>();
+
+            // add services
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
+
+            services.AddScoped<IFolderRepository, FolderRepository>();
+            services.AddScoped<IFolderService, FolderService>();
+
+
+            // uow
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            // mapper
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            services.AddSingleton(mapperConfig.CreateMapper());
+
+            // services
+            services.AddSingleton<SingletonService>();
+            services.AddScoped<ScopedService>();
+            services.AddTransient<TransientService>();
+
+
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
